@@ -33,14 +33,16 @@
 
           // LINEプロフィール取得
           const profile = await liff.getProfile();
-
           const userId = profile.userId;
           const displayName = profile.displayName;
+          const params = new URLSearchParams(window.location.search);
+          const key = params.get("key");
 
-          console.log("userId:", userId);
-          console.log("displayName:", displayName);
+          // console.log("userId:", userId);
+          // console.log("displayName:", displayName);
 
-          document.getElementById("status").textContent = "確認完了！ちょっとまってね...";
+          document.getElementById("status").textContent =
+            "確認完了！ちょっとまってね...";
 
           const response = await fetch(GAS_URL, {
             method: "POST",
@@ -50,12 +52,15 @@
             body: JSON.stringify({
               userId: userId,
               displayName: displayName,
+              key: key,
             }),
           });
+          const SHOP_CARD_URL = "ここにショップカードのポイント付与URL";
           const result = await response.json();
           if (result.granted) {
-            document.getElementById("status").textContent =
-              `${result.point}ポイント獲得しました！`;
+            window.location.href = SHOP_CARD_URL;
+            // document.getElementById("status").textContent =
+            //   `${result.point}ポイント獲得しました！`;
           } else {
             document.getElementById("status").textContent =
               "本日のポイントは獲得済みです。";
