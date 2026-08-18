@@ -7,7 +7,7 @@
   </head>
   <body>
     <h1>ポイント獲得</h1>
-    <p id="status">処理中...</p>
+    <p id="status">LINEのログイン状況確認</p>
 
     <script src="https://static.line-scdn.net/liff/edge/2/sdk.js"></script>
 
@@ -40,7 +40,7 @@
           console.log("userId:", userId);
           console.log("displayName:", displayName);
 
-          document.getElementById("status").textContent = "userId取得成功！";
+          document.getElementById("status").textContent = "確認完了！ちょっとまってね...";
 
           const response = await fetch(GAS_URL, {
             method: "POST",
