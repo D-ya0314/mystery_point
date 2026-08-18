@@ -42,16 +42,14 @@
 
           document.getElementById("status").textContent = "userId取得成功！";
 
-          const response = await fetch(GAS_URL, {
-            method: "POST",
-            headers: {
-              "Content-Type": "text/plain;charset=utf-8",
-            },
-            body: JSON.stringify({
-              userId: userId,
-              displayName: displayName,
-            }),
-          });
+          const url =
+            GAS_URL +
+            "?userId=" +
+            encodeURIComponent(userId) +
+            "&displayName=" +
+            encodeURIComponent(displayName);
+
+          window.location.href = url;
           const result = await response.json();
           console.log("GAS response:", result);
         } catch (error) {
