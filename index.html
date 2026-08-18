@@ -64,8 +64,7 @@
             // document.getElementById("status").textContent =
             //   `${result.point}ポイント獲得しました！`;
           } else {
-            document.getElementById("status").textContent =
-              "本日のポイントは獲得済みです。";
+            document.getElementById("status").textContent = result.message;
           }
           console.log("GAS response:", result);
         } catch (error) {
