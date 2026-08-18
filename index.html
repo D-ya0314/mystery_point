@@ -15,7 +15,8 @@
       const LIFF_ID = "2011066044-WuCEcTtF";
 
       // ここにGASのWebアプリURL
-      const GAS_URL = "ここにGASのURL";
+      const GAS_URL =
+        "https://script.google.com/macros/s/AKfycbz1eSFLwxabykW89URs1gj_FBjxEeMJr6GjUOYYUdgqaS4pW9hPjVresViL_XM5bu6r/exec";
 
       async function main() {
         try {
@@ -40,6 +41,19 @@
           console.log("displayName:", displayName);
 
           document.getElementById("status").textContent = "userId取得成功！";
+
+          const response = await fetch(GAS_URL, {
+            method: "POST",
+            headers: {
+              "Content-Type": "text/plain;charset=utf-8",
+            },
+            body: JSON.stringify({
+              userId: userId,
+              displayName: displayName,
+            }),
+          });
+          const result = await response.json();
+          console.log("GAS response:", result);
         } catch (error) {
           console.error(error);
 
