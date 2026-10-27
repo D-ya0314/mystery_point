@@ -36,6 +36,7 @@
           const userId = profile.userId;
           const displayName = profile.displayName;
           const params = new URLSearchParams(window.location.search);
+          const categoryId = params.get("categoryId");
           const key = params.get("key");
           console.log("現在のURL:", window.location.href);
           console.log("現在のsearch:", window.location.search);
@@ -54,6 +55,7 @@
             body: JSON.stringify({
               userId: userId,
               displayName: displayName,
+              categoryId: categoryId,
               key: key,
             }),
           });
